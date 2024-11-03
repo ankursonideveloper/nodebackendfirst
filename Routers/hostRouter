@@ -1,0 +1,17 @@
+const express = require("express");
+const path = require("path");
+const rootDir = require("../util/path");
+
+const hostRouter = express.Router();
+
+hostRouter.get("/contact-us", (req, res, next) => {
+  console.log(req.url, req.method, "Second middleware");
+  res.sendFile(path.join(rootDir, "public", "views", "contact_us_get.html"));
+});
+
+hostRouter.post("/contact-us", (req, res, next) => {
+  console.log(req.body, "Second middleware");
+  res.send("Successfully submitted data");
+});
+
+module.exports = hostRouter;
